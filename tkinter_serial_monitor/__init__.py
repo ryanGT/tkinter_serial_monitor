@@ -84,8 +84,12 @@ class tkinter_serial_gui(tk.Tk, tkinter_utils.abstract_window):
         self.menu_file.add_command(label='Quit', command=self._quit)
         self.menu_serial.add_command(label='Read (force read)', command=self.read_serial)
         self.menu_serial.add_command(label='Transmit (write)', command=self.write_serial)
-        self.menu_plot.add_command(label='dt Plot', command=self.plot_dt)                
-        ## self.menu_codegen.add_command(label='Set Arduino Template File', command=self.set_arduino_template)
+        self.menu_plot.add_command(label='dt Plot', command=self.plot_dt)
+        self.menu_serial.add_command(label="Set Portname", \
+                                         command=self.set_portname)
+        self.menu_serial.add_command(label="Open Serial Port", \
+                                         command=self.open_serial_port)
+                                         ## self.menu_codegen.add_command(label='Set Arduino Template File', command=self.set_arduino_template)
         ## self.menu_codegen.add_command(label='Get Arduino Template File', command=self.get_arduino_template)
         ## self.menu_codegen.add_command(label='Set Arduino Output Path', \
         ##                               command=self.set_arduino_output_folder)
@@ -106,6 +110,15 @@ class tkinter_serial_gui(tk.Tk, tkinter_utils.abstract_window):
         # configure the root window
         self.make_widgets()
 
+
+    def set_portname(self):
+        portname = self.portname_var.get()
+        if os.path.exists(portname):
+            print("found: %s" % portname)
+            print("portname set")
+        else:
+            print("portname not valid: %s" % portname)
+            
 
     def find_serial_port(self):
         if rwkos.amiMac():
@@ -130,6 +143,7 @@ class tkinter_serial_gui(tk.Tk, tkinter_utils.abstract_window):
             self.ser.open()
             time.sleep(2)
             self.open = True
+            print("serial port should be open")
 
 
     def close_serial_port(self):
