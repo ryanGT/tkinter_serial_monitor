@@ -39,9 +39,18 @@ import numpy as np
 from tkinter import ttk
 from tkinter.messagebox import showinfo
 
-import tkinter_utils, rwkos
 
-import os, txt_mixin, glob, time, re
+# stuff to fix before pusing to pypi:
+# - txt_mixin and rwkos are in krauss_misc
+# - this is a different tkinter_utils from pybd_gui
+#     - could I put this tkinter_utils in krauss_misc?
+#     - do I merge the tkinter_utils versions into one file in krauss_misc?
+# - serial_utils is a dependency
+#     - so is pyserial
+
+from krauss_misc import tkinter_utils, rwkos, txt_mixin
+
+import os, glob, time, re
 import serial, serial_utils
 
 pad_options = {'padx': 5, 'pady': 5}

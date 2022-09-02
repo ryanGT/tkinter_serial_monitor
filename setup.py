@@ -5,13 +5,17 @@ import setuptools
 
 setuptools.setup(
     name='tkinter_serial_monitor',    # This is the name of your PyPI-package.
-    version='1.0.0',
+    version='0.9.5',
     url='https://github.com/ryanGT/tkinter_serial_monitor',
     author='Ryan Krauss',
     author_email='ryanwkrauss@gmail.com',
-    description="tkinter gui for reading serial output from an Arduino and plotting data",
+    description="a tkinter based gui Arduino serial monitor with graphing capabilites"
     #long_description=long_description,
     #long_description_content_type="text/markdown",
+    install_requires=[
+          'krauss_misc',
+          'pyserial',
+    ],
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
